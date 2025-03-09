@@ -1,0 +1,23 @@
+---
+import { Image } from 'astro:assets';
+import GithubIcon from '../assets/github.svg?raw';
+import linkedinIcon from '../assets/linkedin.svg';
+---
+
+<footer class="flex flex-col items-center py-6 text-sky-400/60">
+	<div class="flex justify-center gap-8 mb-4">
+		<a
+			href="https://github.com/YourGitHubUsername"
+			class="flex text-sky-400/60 hover:text-sky-400 h-6 w-6"
+			target="_blank"
+			rel="noopener noreferrer"
+		>
+			<title>GitHub - place where my code lands</title>
+			<Fragment set:html={GithubIcon} class="h-6 w-6" />
+		</a>
+		<a href="https://linkedin.com/in/YourLinkedInUsername" class="flex bg-sky-400/60 hover:bg-sky-400" target="_blank" rel="noopener noreferrer">
+			<Image src={linkedinIcon} alt="LinkedIn" class="h-6 w-6" loading="lazy" />
+		</a>
+	</div>
+	<p class="flex">&copy; {new Date().getFullYear()} Karol Rutkowski. All rights reserved.</p>
+</footer>

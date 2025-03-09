@@ -1,0 +1,83 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Home - Karol Rutkowski">
+	<section class="hero min-h-screen flex items-center justify-center text-center p-4">
+		<div class="animate-fade-in">
+			<h1 class="text-6xl font-bold mb-4 animate-slide-down">Karol Rutkowski</h1>
+			<p class="text-xl mb-8 animate-slide-up">Software Engineer & Technology Enthusiast</p>
+			<div class="space-x-4">
+				<a href="/contact" class="btn bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-full transition-all duration-300 hover:scale-105"
+					>Get in Touch</a
+				>
+				<a
+					href="#about"
+					class="btn border border-white px-6 py-3 rounded-full transition-all duration-300 hover:scale-105"
+					onclick="document.getElementById('about').scrollIntoView({ behavior: 'smooth' }); return false;">Learn More</a
+				>
+			</div>
+		</div>
+	</section>
+	<section id="about" class="py-20 px-4">
+		<div class="max-w-6xl mx-auto">
+			<h2 class="text-4xl font-bold mb-8 text-center">About Me</h2>
+			<div class="flex flex-col md:flex-row items-center gap-8">
+				<div class="w-full md:w-1/2">
+					<img src="/placeholder-profile.jpg" alt="Profile" class="rounded-lg shadow-xl hover:scale-105 transition-transform duration-300" />
+				</div>
+				<div class="w-full md:w-1/2">
+					<p class="text-lg mb-6">Passionate software engineer with a love for creating innovative solutions and learning new technologies.</p>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="py-20 px-4 bg-gray-900/50">
+		<div class="max-w-6xl mx-auto">
+			<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+				<a href="/education" class="group">
+					<div class="p-6 bg-gray-800 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-xl">
+						<img src="/education-icon.svg" alt="Education" class="w-16 h-16 mb-4 mx-auto" />
+						<h3 class="text-2xl font-bold mb-4 text-center">Education</h3>
+						<p class="text-center">Discover my academic journey and qualifications</p>
+					</div>
+				</a>
+				<a href="/projects" class="group">
+					<div class="p-6 bg-gray-800 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-xl">
+						<img src="/projects-icon.svg" alt="Projects" class="w-16 h-16 mb-4 mx-auto" />
+						<h3 class="text-2xl font-bold mb-4 text-center">Projects</h3>
+						<p class="text-center">Explore my portfolio of technical projects</p>
+					</div>
+				</a>
+				<a href="/skills" class="group">
+					<div class="p-6 bg-gray-800 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-xl">
+						<img src="/skills-icon.svg" alt="Skills" class="w-16 h-16 mb-4 mx-auto" />
+						<h3 class="text-2xl font-bold mb-4 text-center">Skills</h3>
+						<p class="text-center">See my technical expertise and capabilities</p>
+					</div>
+				</a>
+			</div>
+		</div>
+	</section>
+	<section class="py-20 px-4">
+		<div class="max-w-6xl mx-auto">
+			<h2 class="text-4xl font-bold mb-12 text-center">Featured Projects</h2>
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+				<div class="bg-gray-800 rounded-lg overflow-hidden hover:scale-105 transition-transform duration-300">
+					<img src="/project1.jpg" alt="Project 1" class="w-full h-48 object-cover" />
+					<div class="p-6">
+						<h3 class="text-xl font-bold mb-2">Project Name</h3>
+						<p>Brief project description goes here</p>
+					</div>
+				</div>
+				<div class="bg-gray-800 rounded-lg overflow-hidden hover:scale-105 transition-transform duration-300">
+					<img src="/project2.jpg" alt="Project 2" class="w-full h-48 object-cover" />
+					<div class="p-6">
+						<h3 class="text-xl font-bold mb-2">Project Name</h3>
+						<p>Brief project description goes here</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</Layout>
