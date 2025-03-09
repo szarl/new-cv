@@ -1,0 +1,95 @@
+---
+import { actions } from 'astro:actions';
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Contact - Karol Rutkowski">
+	<div id="contact-success"></div>
+	<section class="min-h-screen flex items-center justify-center py-4 px-4">
+		<div class="max-w-6xl mx-auto w-full">
+			<h1 class="text-4xl md:text-6xl font-bold mb-12 text-center" data-aos="fade-up">Contact Me</h1>
+			<div class="grid md:grid-cols-2 gap-12">
+				<!-- Personal Information Section -->
+				<div data-aos="fade-right" data-aos-delay="300">
+					<div class="bg-gray-800/50 rounded-lg p-8 shadow-xl transition-all duration-300 hover:scale-105 h-full">
+						<h2 class="text-2xl font-semibold mb-6 text-sky-400">Personal Information</h2>
+						<div class="space-y-4 text-lg">
+							<p><strong class="text-white">Name:</strong> <span class="text-gray-300">Karol Rutkowski</span></p>
+							<p>
+								<strong class="text-white">Location:</strong>
+								<a href="https://maps.app.goo.gl/EuChCry1Y4B9BGKi8" target="_blank" class="text-gray-300 hover:text-sky-400"
+									>Wrocław, Poland</a
+								>
+							</p>
+						</div>
+						<p>
+							<strong class="text-white">Phone:</strong>
+							<a href="phone:+48 692804506" class="text-gray-300 hover:text-sky-400">+48 692804506</a>
+						</p>
+						<p>
+							<strong class="text-white">Email:</strong>
+							<a href="mailto:karol.rutkowski.a@gmail.com" class="text-gray-300 hover:text-sky-400">karol.rutkowski.a@gmail.com</a>
+						</p>
+					</div>
+				</div>
+
+				<!-- Contact Form Section -->
+				<div data-aos="fade-left" data-aos-delay="300">
+					<div class="bg-gray-800/50 rounded-lg p-8 shadow-xl transition-all duration-300 hover:scale-105 h-full">
+						<form action={actions.send} method="POST" class="space-y-6">
+							<div>
+								<label for="name" class="block mb-2 text-lg font-medium text-white">Name</label>
+								<input
+									type="text"
+									id="name"
+									name="name"
+									required
+									class="w-full p-3 bg-gray-900/70 border border-gray-700 text-white rounded-lg focus:ring-2 focus:ring-blue-600 focus:outline-none transition-all duration-300"
+									placeholder="Your Name"
+								/>
+							</div>
+
+							<div>
+								<label for="email" class="block mb-2 text-lg font-medium text-white">Email</label>
+								<input
+									type="email"
+									id="email"
+									name="email"
+									required
+									class="w-full p-3 bg-gray-900/70 border border-gray-700 text-white rounded-lg focus:ring-2 focus:ring-blue-600 focus:outline-none transition-all duration-300"
+									placeholder="Your Email"
+								/>
+							</div>
+
+							<div>
+								<label for="message" class="block mb-2 text-lg font-medium text-white">Message</label>
+								<textarea
+									id="message"
+									name="message"
+									required
+									rows="5"
+									class="w-full p-3 bg-gray-900/70 border border-gray-700 text-white rounded-lg focus:ring-2 focus:ring-blue-600 focus:outline-none transition-all duration-300"
+									placeholder="Your Message"></textarea>
+							</div>
+
+							<button
+								type="submit"
+								class="w-full bg-blue-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-blue-700 transition-all duration-300 hover:scale-105 cursor-pointer"
+							>
+								Send Message
+							</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<script is:inline>
+		const query = new URLSearchParams(window.location.search).get('_action');
+		if (query) {
+			const contactSuccess = document.getElementById('contact-success');
+			contactSuccess.classList.add('p-4');
+			contactSuccess.innerHTML = `<div class="bg-green-500 text-white p-4 rounded-lg">Your message has been sent successfully!</div>`;
+		}
+	</script>
+</Layout>

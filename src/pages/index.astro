@@ -25,7 +25,7 @@ import Chess from '../assets/chess.webp';
 			</div>
 		</div>
 	</section>
-	<section id="about" class="py-20 px-4" data-aos="fade-left" data-delay="150">
+	<section id="about" class="py-20 px-4">
 		<div class="max-w-6xl mx-auto">
 			<h2 class="text-4xl font-bold mb-8 text-center">About Me</h2>
 			<div class="flex flex-col md:flex-row items-center gap-8">
@@ -41,7 +41,7 @@ import Chess from '../assets/chess.webp';
 			</div>
 		</div>
 	</section>
-	<section class="py-20 px-4 bg-gray-900/50" data-aos="fade-right" data-delay="300">
+	<section class="py-20 px-4 bg-gray-900/50" data-aos="fade-up" data-delay="300">
 		<div class="max-w-6xl mx-auto">
 			<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
 				<a href="/education" class="group">
@@ -82,6 +82,9 @@ import Chess from '../assets/chess.webp';
 						</p>
 					</div>
 				</div>
+				<div class="col-span-1">
+					<HobbiesSlider />
+				</div>
 				<div class="bg-gray-800 rounded-lg overflow-hidden hover:scale-105 transition-transform duration-300">
 					<Image src={Chess} alt="Chess" class="w-full object-cover" />
 					<div class="p-6">
@@ -91,9 +94,6 @@ import Chess from '../assets/chess.webp';
 							- 2nd place in the country level.
 						</p>
 					</div>
-				</div>
-				<div class="col-span-1">
-					<HobbiesSlider />
 				</div>
 			</div>
 		</div>

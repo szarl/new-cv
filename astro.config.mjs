@@ -1,5 +1,5 @@
 // @ts-check
-import vercelStatic from '@astrojs/vercel/static';
+import vercelAdapter from '@astrojs/vercel';
 import tailwindcss from '@tailwindcss/vite';
 import icon from 'astro-icon';
 import { defineConfig } from 'astro/config';
@@ -10,6 +10,6 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
   integrations: [icon()],
-  adapter: vercelStatic({}),
-  output: 'static',
+  adapter: vercelAdapter(),
+  output: 'server',
 });
