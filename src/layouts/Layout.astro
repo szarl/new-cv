@@ -19,11 +19,10 @@ const {
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta name="description" content={description} />
+		<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
 		<title>{title}</title>
 	</head>
-	<body class="bg-slate-50 min-h-screen bg-gradient-to-b from-sky-950 to-black text-slate-100"></body><div
-		class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative"
-	>
+	<body class="bg-slate-50 min-h-screen bg-gradient-to-b from-sky-950 to-black text-slate-100">
 		<header class="py-6 bg-sky-900/50 backdrop-blur-sm rounded-lg my-4 fixed top-0 left-0 right-0 z-10">
 			<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
 				<div class="text-xl font-bold text-sky-400">Karol Rutkowski</div>
@@ -65,9 +64,9 @@ const {
 			</div>
 		</header>
 
-		<script>
-			const menuButton = document.getElementById('menu-button')!;
-			const mobileMenu = document.getElementById('mobile-menu')!;
+		<script is:inline>
+			const menuButton = document.getElementById('menu-button');
+			const mobileMenu = document.getElementById('mobile-menu');
 			menuButton.addEventListener('click', () => {
 				if (mobileMenu.style.display === 'none') {
 					mobileMenu.style.display = 'block';
@@ -90,5 +89,12 @@ const {
 		</main>
 
 		<Footer />
-	</div>
+		<script>
+			import AOS from 'aos';
+			AOS.init({
+				duration: 1000,
+				once: true,
+			});
+		</script>
+	</body>
 </html>

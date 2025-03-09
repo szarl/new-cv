@@ -15,7 +15,10 @@
 	},
 	"dependencies": {
 		"@tailwindcss/vite": "^4.0.9",
-		"astro": "^5.1.5"
+		"@types/aos": "^3.0.7",
+		"aos": "^2.3.4",
+		"astro": "^5.1.5",
+		"astro-icon": "^1.1.5"
 	},
 	"devDependencies": {
 		"autoprefixer": "^10.4.20",

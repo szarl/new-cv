@@ -1,9 +1,15 @@
 ---
+import { Image } from 'astro:assets';
+import { Icon } from 'astro-icon/components';
 import Layout from '../layouts/Layout.astro';
+import HobbiesSlider from '../components/HobbiesSlider.astro';
+import DeveloperMe from '../assets/developer_me.webp';
+import Books from '../assets/books.webp';
+import Chess from '../assets/chess.webp';
 ---
 
 <Layout title="Home - Karol Rutkowski">
-	<section class="hero min-h-screen flex items-center justify-center text-center p-4">
+	<section class="hero min-h-screen flex items-center justify-center text-center p-4" data-aos="fade-up">
 		<div class="animate-fade-in">
 			<h1 class="text-6xl font-bold mb-4 animate-slide-down">Karol Rutkowski</h1>
 			<p class="text-xl mb-8 animate-slide-up">Software Engineer & Technology Enthusiast</p>
@@ -13,45 +19,48 @@ import Layout from '../layouts/Layout.astro';
 				>
 				<a
 					href="#about"
-					class="btn border border-white px-6 py-3 rounded-full transition-all duration-300 hover:scale-105"
+					class="btn border border-white px-6 py-3 rounded-full transition-all duration-300 hover:scale-105 hover:bg-white hover:text-sky-900"
 					onclick="document.getElementById('about').scrollIntoView({ behavior: 'smooth' }); return false;">Learn More</a
 				>
 			</div>
 		</div>
 	</section>
-	<section id="about" class="py-20 px-4">
+	<section id="about" class="py-20 px-4" data-aos="fade-left" data-delay="150">
 		<div class="max-w-6xl mx-auto">
 			<h2 class="text-4xl font-bold mb-8 text-center">About Me</h2>
 			<div class="flex flex-col md:flex-row items-center gap-8">
 				<div class="w-full md:w-1/2">
-					<img src="/placeholder-profile.jpg" alt="Profile" class="rounded-lg shadow-xl hover:scale-105 transition-transform duration-300" />
+					<Image src={DeveloperMe} alt="Profile" class="rounded-lg shadow-xl hover:scale-105 transition-transform duration-300" loading="lazy" />
 				</div>
 				<div class="w-full md:w-1/2">
-					<p class="text-lg mb-6">Passionate software engineer with a love for creating innovative solutions and learning new technologies.</p>
+					<p class="text-lg mb-6">
+						Passionate software engineer with a love for creating innovative solutions and learning new technologies. Writing optimized code and
+						readable code? That's my daily basis.
+					</p>
 				</div>
 			</div>
 		</div>
 	</section>
-	<section class="py-20 px-4 bg-gray-900/50">
+	<section class="py-20 px-4 bg-gray-900/50" data-aos="fade-right" data-delay="300">
 		<div class="max-w-6xl mx-auto">
 			<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
 				<a href="/education" class="group">
 					<div class="p-6 bg-gray-800 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-xl">
-						<img src="/education-icon.svg" alt="Education" class="w-16 h-16 mb-4 mx-auto" />
+						<Icon name="education" title="Education" class="w-16 h-16 mb-4 mx-auto text-sky-400/60" />
 						<h3 class="text-2xl font-bold mb-4 text-center">Education</h3>
 						<p class="text-center">Discover my academic journey and qualifications</p>
 					</div>
 				</a>
 				<a href="/projects" class="group">
 					<div class="p-6 bg-gray-800 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-xl">
-						<img src="/projects-icon.svg" alt="Projects" class="w-16 h-16 mb-4 mx-auto" />
+						<Icon name="projects" title="Projects" class="w-16 h-16 mb-4 mx-auto text-sky-400/60" />
 						<h3 class="text-2xl font-bold mb-4 text-center">Projects</h3>
 						<p class="text-center">Explore my portfolio of technical projects</p>
 					</div>
 				</a>
 				<a href="/skills" class="group">
 					<div class="p-6 bg-gray-800 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-xl">
-						<img src="/skills-icon.svg" alt="Skills" class="w-16 h-16 mb-4 mx-auto" />
+						<Icon name="skills" title="Skills" class="w-16 h-16 mb-4 mx-auto text-sky-400/60" />
 						<h3 class="text-2xl font-bold mb-4 text-center">Skills</h3>
 						<p class="text-center">See my technical expertise and capabilities</p>
 					</div>
@@ -59,23 +68,32 @@ import Layout from '../layouts/Layout.astro';
 			</div>
 		</div>
 	</section>
-	<section class="py-20 px-4">
+	<section class="py-20 px-4" data-aos="fade-up" data-aos="fade-up">
 		<div class="max-w-6xl mx-auto">
-			<h2 class="text-4xl font-bold mb-12 text-center">Featured Projects</h2>
-			<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+			<h2 class="text-4xl font-bold mb-12 text-center">My Hobbies</h2>
+			<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
 				<div class="bg-gray-800 rounded-lg overflow-hidden hover:scale-105 transition-transform duration-300">
-					<img src="/project1.jpg" alt="Project 1" class="w-full h-48 object-cover" />
+					<Image src={Books} alt="Books" class="w-full object-cover" />
 					<div class="p-6">
-						<h3 class="text-xl font-bold mb-2">Project Name</h3>
-						<p>Brief project description goes here</p>
+						<h3 class="text-xl font-bold mb-2">Books</h3>
+						<p>
+							Reading has been always an important part of my life. It is one of the best way of gaining knowledge. Since I have started my
+							studies, mostly I like reading Sci-Fi, biography and self development books.
+						</p>
 					</div>
 				</div>
 				<div class="bg-gray-800 rounded-lg overflow-hidden hover:scale-105 transition-transform duration-300">
-					<img src="/project2.jpg" alt="Project 2" class="w-full h-48 object-cover" />
+					<Image src={Chess} alt="Chess" class="w-full object-cover" />
 					<div class="p-6">
-						<h3 class="text-xl font-bold mb-2">Project Name</h3>
-						<p>Brief project description goes here</p>
+						<h3 class="text-xl font-bold mb-2">Chess</h3>
+						<p>
+							Enjoying strategic thinking. I am a person who loves to spend time actively in a various ways.The first person on the right is me
+							- 2nd place in the country level.
+						</p>
 					</div>
+				</div>
+				<div class="col-span-1">
+					<HobbiesSlider />
 				</div>
 			</div>
 		</div>

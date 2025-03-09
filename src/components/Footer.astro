@@ -1,7 +1,5 @@
 ---
-import { Image } from 'astro:assets';
-import GithubIcon from '../assets/github.svg?raw';
-import linkedinIcon from '../assets/linkedin.svg';
+import { Icon } from 'astro-icon/components';
 ---
 
 <footer class="flex flex-col items-center py-6 text-sky-400/60">
@@ -12,11 +10,15 @@ import linkedinIcon from '../assets/linkedin.svg';
 			target="_blank"
 			rel="noopener noreferrer"
 		>
-			<title>GitHub - place where my code lands</title>
-			<Fragment set:html={GithubIcon} class="h-6 w-6" />
+			<Icon name="github" class="h-6 w-6" title="Github" />
 		</a>
-		<a href="https://linkedin.com/in/YourLinkedInUsername" class="flex bg-sky-400/60 hover:bg-sky-400" target="_blank" rel="noopener noreferrer">
-			<Image src={linkedinIcon} alt="LinkedIn" class="h-6 w-6" loading="lazy" />
+		<a
+			href="https://linkedin.com/in/YourLinkedInUsername"
+			class="flex text-sky-400/60 hover:text-sky-400"
+			target="_blank"
+			rel="noopener noreferrer"
+		>
+			<Icon name="linkedin" class="h-6 w-6" title="Linkedin" />
 		</a>
 	</div>
 	<p class="flex">&copy; {new Date().getFullYear()} Karol Rutkowski. All rights reserved.</p>
