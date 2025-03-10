@@ -1,0 +1,159 @@
+---
+import { Icon } from 'astro-icon/components';
+import Layout from '../layouts/Layout.astro';
+
+// Define skills in a structured array with descriptions
+const skills = [
+	{
+		category: 'Front End',
+		description: 'Tools and frameworks for building interactive user interfaces and web applications.',
+		items: [
+			{ name: 'Astro', icon: 'frameworks/astro', link: 'https://astro.build' },
+			{ name: 'Next.js', icon: 'frameworks/nextjs', link: 'https://nextjs.org' },
+			{ name: 'React', icon: 'frameworks/react', link: 'https://reactjs.org' },
+			{ name: 'Vue.js', icon: 'frameworks/vuejs', link: 'https://vuejs.org' },
+			{ name: 'Nuxt.js', icon: 'frameworks/nuxt', link: 'https://nuxt.com' },
+			{ name: 'Vuetify', icon: 'frameworks/vuetify', link: 'https://vuetifyjs.com' },
+			{ name: 'Shadcn', icon: 'frameworks/shadcnui', link: 'https://shadcn.com' },
+			{ name: 'PWA', icon: 'frameworks/pwa', link: 'https://web.dev/progressive-web-apps' },
+			{ name: 'SCSS', icon: 'frameworks/sass', link: 'https://sass-lang.com' },
+			{ name: 'TypeScript', icon: 'frameworks/typescript', link: 'https://www.typescriptlang.org' },
+		],
+		delay: 100,
+	},
+	{
+		category: 'Back End',
+		description: 'Technologies for server-side logic, APIs, and application functionality.',
+		items: [
+			{ name: 'Node.js', icon: 'frameworks/nodejs', link: 'https://nodejs.org' },
+			{ name: 'Express.js', icon: 'frameworks/express', link: 'https://expressjs.com' },
+			{ name: 'NestJS', icon: 'frameworks/nestjs', link: 'https://nestjs.com' },
+			{ name: 'Python', icon: 'frameworks/python', link: 'https://www.python.org' },
+			{ name: 'Django', icon: 'frameworks/django', link: 'https://www.djangoproject.com' },
+			{ name: 'Java', icon: 'frameworks/java', link: 'https://www.java.com' },
+		],
+		delay: 200,
+	},
+	{
+		category: 'Databases - Relational',
+		description: 'Structured data storage systems using tables and SQL for querying.',
+		items: [
+			{ name: 'PostgreSQL', icon: 'frameworks/postgresql', link: 'https://www.postgresql.org' },
+			{ name: 'MySQL', icon: 'frameworks/mysql', link: 'https://www.mysql.com' },
+			{ name: 'TypeORM', icon: 'frameworks/typeorm', link: 'https://typeorm.io' },
+		],
+		delay: 300,
+	},
+	{
+		category: 'Databases - Non-Relational',
+		description: 'Flexible, scalable databases for unstructured or semi-structured data.',
+		items: [
+			{ name: 'DynamoDb', icon: 'frameworks/dynamodb', link: 'https://aws.amazon.com/dynamodb/' },
+			{ name: 'Redis', icon: 'frameworks/redis', link: 'https://redis.io' },
+		],
+		delay: 400,
+	},
+	{
+		category: 'DevOps',
+		description: 'Tools for infrastructure management, deployment, and automation.',
+		items: [
+			{ name: 'AWS (Amazon Web Services)', icon: 'frameworks/aws', link: 'https://aws.amazon.com' },
+			{ name: 'Docker', icon: 'frameworks/docker', link: 'https://www.docker.com' },
+			{ name: 'Terraform', icon: 'frameworks/terraform', link: 'https://www.terraform.io' },
+		],
+		delay: 500,
+	},
+	{
+		category: 'CI/CD',
+		description: 'Practices and tools for continuous integration and deployment pipelines.',
+		items: [
+			{ name: 'Git', icon: 'frameworks/git', link: 'https://git-scm.com' },
+			{ name: 'GitHub Actions', icon: 'frameworks/ci-cd', link: 'https://github.com/features/actions' },
+			{ name: 'GitLab CI/CD', icon: 'frameworks/gitlab', link: 'https://docs.gitlab.com/ee/ci/' },
+			{ name: 'npm/pnpm', icon: 'frameworks/npm', link: 'https://www.npmjs.com' },
+		],
+		delay: 600,
+	},
+	{
+		category: 'Testing',
+		description: 'Frameworks for ensuring code quality and application reliability.',
+		items: [
+			{ name: 'Jest', icon: 'frameworks/jest', link: 'https://jestjs.io' },
+			{ name: 'Cypress', icon: 'frameworks/cypress', link: 'https://www.cypress.io' },
+			{ name: 'Mocha', icon: 'frameworks/mocha', link: 'https://mochajs.org' },
+			{ name: 'PyTest', icon: 'frameworks/pytest', link: 'https://docs.pytest.org' },
+			{ name: 'Postman', icon: 'frameworks/postman', link: 'https://www.postman.com' },
+		],
+		delay: 700,
+	},
+	{
+		category: 'Languages',
+		description: 'Spoken and written languages for communication and collaboration.',
+		items: [
+			{ name: 'Polish - Native', icon: 'frameworks/flag-outline' },
+			{ name: 'English - Advanced (Daily Usage)', icon: 'frameworks/flag-outline' },
+			{ name: 'French - A2/B1 (Working Language)', icon: 'frameworks/flag-outline' },
+			{ name: 'Spanish - A2 (Certified, Erasmus)', icon: 'frameworks/flag-outline' },
+		],
+		delay: 800,
+	},
+];
+---
+
+<Layout title="Skills - Karol Rutkowski">
+	<section class="min-h-screen flex items-center justify-center py-20 px-4">
+		<div class="max-w-6xl mx-auto w-full">
+			<h1 class="text-4xl md:text-6xl font-bold mb-12 text-center text-white animate-slide-down">My Skills</h1>
+
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+				{
+					skills.map((skill) => (
+						<div data-aos="fade-up" data-aos-delay={skill.delay}>
+							<div class="skill-card bg-gray-800/50 rounded-lg p-6 shadow-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl border border-[rgba(255,255,255,0.1)] hover:border-[rgba(255,255,255,0.2)] h-full">
+								<h2 class="text-2xl font-semibold text-sky-400 mb-2">{skill.category}</h2>
+								<p class="text-gray-400 text-sm mb-4">{skill.description}</p>
+								<ul class="space-y-2 text-gray-300">
+									{skill.items.map((item) => (
+										<li class="flex items-center gap-2 hover:text-sky-400">
+											<Icon name={item.icon} title={`${item.name} icon`} class="w-6 h-6" />
+											{item.link ? (
+												<a href={item.link} target="_blank" rel="noopener noreferrer" class="transition-colors">
+													{item.name}
+												</a>
+											) : (
+												<span>{item.name}</span>
+											)}
+										</li>
+									))}
+								</ul>
+							</div>
+						</div>
+					))
+				}
+			</div>
+		</div>
+	</section>
+</Layout>
+
+<style>
+	/* Custom animations */
+	.animate-slide-down {
+		animation: slideDown 0.5s ease-out;
+	}
+
+	@keyframes slideDown {
+		from {
+			opacity: 0;
+			transform: translateY(-20px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	.skill-card ul {
+		list-style-type: disc;
+		padding-left: 1.5rem;
+	}
+</style>
