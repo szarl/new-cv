@@ -1,0 +1,91 @@
+---
+import { Icon } from 'astro-icon/components';
+import { Image } from 'astro:assets';
+import asm from '../assets/asm/flat-details.webp';
+import bluesoft from '../assets/bluesoft/bluesoft.webp';
+import cwash from '../assets/cwash/cwash.webp';
+import oldCv from '../assets/oldCv/cv.webp';
+import Layout from '../layouts/Layout.astro';
+
+// Define projects in a structured array
+const projects = [
+	{
+		title: 'New bluesoft web page',
+		description:
+			'Redesigned the bluesoft website to improve user experience and performance. Implemented new features and optimized the site for search engines.',
+		technologies: ['Astro', 'TypeScript', 'Tailwind', 'Aos', 'Resend', 'Vercel'],
+		image: bluesoft,
+		link: 'https://bluesoft-website.vercel.app/',
+		delay: 100,
+	},
+	{
+		title: 'Old CV web page',
+		description: 'Created a personal CV website to showcase my skills, projects, and experience.',
+		technologies: ['Nuxt', 'Vue.js', 'Vuetify', 'TypeScript', 'SCSS', 'Vercel'],
+		image: oldCv,
+		link: 'https://karol-rutkowski.vercel.app',
+		delay: 200,
+	},
+	{
+		title: 'Apartment Managment System',
+		description:
+			'A web application for managing apartments, tenants, and payments. Implemented a user-friendly interface and secure authentication.',
+		technologies: ['Nest', 'PostgreSQL', 'Nuxt', 'Vue.js', 'Vuetify', 'TypeScript', 'SCSS', 'PWA', 'Railway'],
+		image: asm,
+		link: 'https://asm-client-production.up.railway.app/',
+		delay: 300,
+	},
+	{
+		title: 'Cwash - App for people who want to clean and have their car cleaned',
+		description:
+			'An application for people who want to clean their car and have their car cleaned. Implemented a user-friendly interface and secure authentication.',
+		technologies: ['Java', 'Spring', 'TypeScript', 'Nuxt', 'Vue.js', 'Vuetify', 'TypeScript', 'SCSS'],
+		image: cwash,
+		link: null,
+		delay: 400,
+	},
+];
+---
+
+<Layout title="Projects - Karol Rutkowski">
+	<section class="min-h-screen flex items-center justify-center py-20 px-4 bg-gray-900">
+		<div class="max-w-6xl mx-auto w-full">
+			<h1 class="text-4xl md:text-6xl font-bold mb-12 text-center text-white" data-aos="zoom-in-up">My Projects</h1>
+
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+				{
+					projects.map((project) => (
+						<div data-aos="fade-up" data-aos-delay={project.delay}>
+							<div class="bg-gray-800/50 h-full rounded-lg p-6 shadow-xl transition-all duration-300 hover:scale-105 hover:shadow-xl border border-[rgba(255,255,255,0.1)] hover:border-[rgba(255,255,255,0.2)]">
+								<Image
+									src={project.image}
+									alt={`${project.title} screenshot`}
+									class="w-full h-48 object-cover rounded-t-lg mb-4"
+									loading="lazy"
+								/>
+								<h2 class="text-2xl font-semibold text-sky-400 mb-2">{project.title}</h2>
+								<p class="text-gray-400 text-sm mb-4">{project.description}</p>
+								<div class="mb-4">
+									<h3 class="text-gray-300 text-sm font-medium mb-2">Technologies:</h3>
+									<div class="flex flex-wrap gap-2">
+										{project.technologies.map((tech) => (
+											<span class="bg-gray-700/50 text-gray-300 text-xs px-2 py-1 rounded">{tech}</span>
+										))}
+									</div>
+								</div>
+								{project.link && (
+									<div class="flex items-center text-sky-400 hover:text-sky-300 transition-colors duration-300">
+										<Icon name="open-in-new" title="Open link" class="w-4 h-4 mr-2" />
+										<a href={project.link} class="text-sm" target="_blank" rel="noopener noreferrer">
+											View Project
+										</a>
+									</div>
+								)}
+							</div>
+						</div>
+					))
+				}
+			</div>
+		</div>
+	</section>
+</Layout>
