@@ -90,11 +90,12 @@ const {
 		</main>
 
 		<Footer />
-		<script>
-			import AOS from 'aos';
+		<script is:inline src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+		<script is:inline>
 			AOS.init({
-				duration: 1000,
+				duration: 800,
 				once: true,
+				offset: 100,
 			});
 		</script>
 	</body>

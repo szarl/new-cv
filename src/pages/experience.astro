@@ -1,0 +1,119 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// Define experience in a structured array
+const experience = [
+	{
+		company: 'MasterBorn',
+		title: 'Support Engineer',
+		description: 'Resolving issues reported by clients, creating and maintaining documentation, fixing bugs, and monitoring logs.',
+		location: 'Wrocław, Poland',
+		date: '03.2024 - Present',
+		delay: 100,
+	},
+	{
+		company: 'Ulan Software',
+		title: 'Full Stack Developer',
+		description:
+			'Contributed to a detailed project for IKEA, developing both front-end and back-end components, and another significant project for Web Creator Bowwe.',
+		location: 'Wrocław, Poland',
+		date: '11.2021 - 01.2024',
+		delay: 200,
+	},
+	{
+		company: 'Sotis',
+		title: 'Air Ventilation Fitter',
+		description: 'Installed air filters in a new factory, providing communication between the Polish squad and the French boss.',
+		location: 'Clermont-Ferrand, France',
+		date: '07.2021 - 09.2021',
+		delay: 300,
+	},
+	{
+		company: 'Hengst Filtration Poland (Automotive)',
+		title: 'Helpdesk Administrator (Internship)',
+		description:
+			'Handled office administration, developed a local production app, and took first steps into OOP with Django and automated tests with Selenium.',
+		location: 'Gogolin, Poland',
+		date: '10.2020 - 06.2021',
+		delay: 400,
+	},
+	{
+		company: 'Polaris Quads',
+		title: 'Production Fitter',
+		description: 'Installed and set up machinery for production lines.',
+		location: 'Opole, Poland',
+		date: '07.2020 - 08.2020',
+		delay: 500,
+	},
+	{
+		company: 'Private Construction',
+		title: 'Construction Worker',
+		description: 'Led a team of 4 people in the renovation of a private flat.',
+		location: 'Opole, Poland',
+		date: '09.2018 - 12.2018',
+		delay: 600,
+	},
+	{
+		company: 'Bluesoft',
+		title: 'Construction Assistant',
+		description: 'Assisted in the renovation of staircases.',
+		location: 'Krapkowice, Poland',
+		date: '07.2018 - 08.2018',
+		delay: 700,
+	},
+	{
+		company: 'Bluesoft | Science and Technology Park in Opole',
+		title: 'Technical Assistant',
+		description: 'Soldered capacitors and other components on integrated circuits.',
+		location: 'Opole, Poland',
+		date: '07.2015 - 08.2015',
+		delay: 800,
+	},
+];
+---
+
+<Layout title="Experience - Karol Rutkowski">
+	<section class="min-h-screen flex items-center justify-center py-20 px-4 bg-gray-900">
+		<div class="max-w-6xl mx-auto w-full">
+			<h1 class="text-4xl md:text-6xl font-bold mb-12 text-center text-white" data-aos="zoom-in-up">My Experience</h1>
+
+			<div class="space-y-8">
+				{
+					experience.map((job) => (
+						<div data-aos="fade-up" data-aos-delay={job.delay / 2}>
+							<div class="experience-card bg-gray-800/50 rounded-lg p-6 shadow-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl border border-[rgba(255,255,255,0.1)] hover:border-[rgba(255,255,255,0.2)]">
+								<h2 class="text-2xl font-semibold text-sky-400 mb-2">{job.company}</h2>
+								<h3 class="text-lg font-medium text-gray-300 mb-2">{job.title}</h3>
+								<p class="text-gray-400 text-sm mb-2">{job.description}</p>
+								<p class="text-gray-500 text-xs">
+									<strong>Location:</strong> {job.location}
+								</p>
+								<p class="text-gray-500 text-xs">
+									<strong>Date:</strong> {job.date}
+								</p>
+							</div>
+						</div>
+					))
+				}
+			</div>
+		</div>
+	</section>
+</Layout>
+
+<style>
+	/* Custom animations */
+	.animate-slide-down {
+		animation: slideDown 0.5s ease-out;
+	}
+
+	@keyframes slideDown {
+		from {
+			opacity: 0;
+			transform: translateY(-20px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+</style>

@@ -2,7 +2,6 @@
 import { Icon } from 'astro-icon/components';
 import Layout from '../layouts/Layout.astro';
 
-// Define skills in a structured array with descriptions
 const skills = [
 	{
 		category: 'Front End',
@@ -105,12 +104,12 @@ const skills = [
 <Layout title="Skills - Karol Rutkowski">
 	<section class="min-h-screen flex items-center justify-center py-20 px-4">
 		<div class="max-w-6xl mx-auto w-full">
-			<h1 class="text-4xl md:text-6xl font-bold mb-12 text-center text-white animate-slide-down">My Skills</h1>
+			<h1 class="text-4xl md:text-6xl font-bold mb-12 text-center text-white" data-aos="zoom-in-up">My Skills</h1>
 
 			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 				{
 					skills.map((skill) => (
-						<div data-aos="fade-up" data-aos-delay={skill.delay}>
+						<div data-aos="fade-up" data-aos-delay={skill.delay / 2}>
 							<div class="skill-card bg-gray-800/50 rounded-lg p-6 shadow-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl border border-[rgba(255,255,255,0.1)] hover:border-[rgba(255,255,255,0.2)] h-full">
 								<h2 class="text-2xl font-semibold text-sky-400 mb-2">{skill.category}</h2>
 								<p class="text-gray-400 text-sm mb-4">{skill.description}</p>
@@ -136,26 +135,3 @@ const skills = [
 		</div>
 	</section>
 </Layout>
-
-<style>
-	/* Custom animations */
-	.animate-slide-down {
-		animation: slideDown 0.5s ease-out;
-	}
-
-	@keyframes slideDown {
-		from {
-			opacity: 0;
-			transform: translateY(-20px);
-		}
-		to {
-			opacity: 1;
-			transform: translateY(0);
-		}
-	}
-
-	.skill-card ul {
-		list-style-type: disc;
-		padding-left: 1.5rem;
-	}
-</style>
