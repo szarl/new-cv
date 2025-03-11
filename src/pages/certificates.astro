@@ -1,0 +1,55 @@
+---
+import { Icon } from 'astro-icon/components';
+import Layout from '../layouts/Layout.astro';
+
+// Define certificates in a structured array
+const certificates = [
+	{
+		title: 'AWS - Cloud Practitioner',
+		issuer: 'Amazon Web Services',
+		date: 'October 2024', // Replace with actual date if known
+		credentialId: '4fb01decaf164e3cbb5be9bbe38897b0',
+		link: 'https://cp.certmetrics.com/amazon/en/public/verify/credential/4fb01decaf164e3cbb5be9bbe38897b0',
+		delay: 100,
+	},
+];
+---
+
+<Layout title="Certificates - Karol Rutkowski">
+	<section class="min-h-screen flex justify-center py-20 px-4 bg-gray-900">
+		<div class="max-w-6xl mx-auto w-full">
+			<h1 class="text-4xl md:text-6xl font-bold mb-12 text-center text-white" data-aos="zoom-in-up">My Certificates</h1>
+
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+				{
+					certificates.map((cert) => (
+						<div data-aos="fade-up" data-aos-delay={cert.delay}>
+							<div class="bg-gray-800/50 rounded-lg p-6 shadow-xl transition-all duration-300 hover:scale-105 hover:shadow-xl border border-[rgba(255,255,255,0.1)] hover:border-[rgba(255,255,255,0.2)]">
+								<h2 class="text-2xl font-semibold text-sky-400 mb-2">{cert.title}</h2>
+								<p class="text-gray-300 text-sm mb-2">
+									<strong>Issuer:</strong> {cert.issuer}
+								</p>
+								<p class="text-gray-500 text-xs mb-2">
+									<strong>Date:</strong> {cert.date}
+								</p>
+								{cert.credentialId && (
+									<p class="text-gray-500 text-xs mb-4">
+										<strong>Credential ID:</strong> {cert.credentialId}
+									</p>
+								)}
+								{cert.link && (
+									<div class="flex items-center text-sky-400 hover:text-sky-300 transition-colors duration-300">
+										<Icon name="open-in-new" class="w-4 h-4 mr-2" />
+										<a href={cert.link} class="text-sm" target="_blank" rel="noopener noreferrer">
+											View Certificate
+										</a>
+									</div>
+								)}
+							</div>
+						</div>
+					))
+				}
+			</div>
+		</div>
+	</section>
+</Layout>

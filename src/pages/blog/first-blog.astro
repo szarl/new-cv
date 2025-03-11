@@ -1,0 +1,30 @@
+---
+import { Icon } from 'astro-icon/components';
+import Layout from '../../layouts/Layout.astro';
+
+const post = {
+	slug: 'first-blog-post',
+	title: 'My First Blog Post',
+	content: `
+        <p>Welcome to my first blog post! I'm excited to share my journey as a software engineer and the experiences that have shaped my career so far.</p>
+        <p>Over the past few years, I've worked on various projects, including the IKEA e-commerce platform and the Web Creator Bowwe at Ulan Software. These projects allowed me to dive deep into technologies like Vue.js, Node.js, and Docker, while also honing my problem-solving skills.</p>
+        <p>Recently, I've been exploring new tools like Astro for building this website, which has been a fun and educational experience. I plan to write more about my learnings, challenges, and future goals in upcoming posts.</p>
+        <p>Feel free to leave comments or reach out if you'd like to discuss any of these topics!</p>
+    `,
+	date: 'March 10, 2025',
+};
+---
+
+<Layout title={`${post.title} - Karol Rutkowski`}>
+	<section class="min-h-screen flex justify-center py-20 px-4">
+		<div class="max-w-3xl mx-auto w-full">
+			<a href="/blog" class="flex items-center text-sky-400 hover:text-sky-300 transition-colors duration-300 mb-8">
+				<Icon name="arrow-left" class="w-4 h-4 mr-2" />
+				<span class="text-sm">Back to Blog</span>
+			</a>
+			<h1 class="text-4xl md:text-6xl font-bold mb-6 text-white" data-aos="zoom-in-up">{post.title}</h1>
+			<p class="text-gray-500 text-xs mb-8"><strong>Date:</strong> {post.date}</p>
+			<div class="prose prose-invert text-gray-300" set:html={post.content} />
+		</div>
+	</section>
+</Layout>
