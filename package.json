@@ -14,11 +14,12 @@
 		"i18n:sync": "npm run i18n:generate:pages && npm run i18n:generate:types"
 	},
 	"dependencies": {
+		"@astrojs/sitemap": "^3.3.0",
 		"@astrojs/vercel": "^8.0.4",
 		"@tailwindcss/vite": "^4.0.9",
 		"@types/aos": "^3.0.7",
 		"aos": "^2.3.4",
-		"astro": "^5.1.5",
+		"astro": "^5.5.5",
 		"astro-icon": "^1.1.5",
 		"resend": "^4.1.2",
 		"sharp": "^0.33.5"

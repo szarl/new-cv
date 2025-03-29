@@ -118,7 +118,7 @@ const skills = [
 									{skill.items.map((item) => (
 										<li class="flex items-center gap-2 hover:text-sky-400">
 											<Icon name={item.icon} title={`${item.name} icon`} class="w-6 h-6" />
-											{item.link ? (
+											{'link' in item ? (
 												<a href={item.link} target="_blank" rel="noopener noreferrer" class="transition-colors">
 													{item.name}
 												</a>

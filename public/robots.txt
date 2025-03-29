@@ -1,0 +1,15 @@
+# Allow all web crawlers
+User-agent: *
+Allow: /
+
+# Add common files that shouldn't be crawled
+Disallow: /*.json$
+Disallow: /*.js$
+Disallow: /*.css$
+
+# Performance directives for Googlebot
+User-agent: Googlebot
+Crawl-delay: 1
+
+# Link to sitemap
+Sitemap: https://rutkowski-software.com/sitemap-index.xml

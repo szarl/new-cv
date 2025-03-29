@@ -5,10 +5,20 @@ import asm from '../assets/asm/flat-details.webp';
 import bluesoft from '../assets/bluesoft/bluesoft.webp';
 import cwash from '../assets/cwash/cwash.webp';
 import oldCv from '../assets/oldCv/cv.webp';
+import stockPortfolioAi from '../assets/stockPortfolioAi/portfolioAI.webp';
+import ImageModal from '../components/ImageModal.astro';
 import Layout from '../layouts/Layout.astro';
 
 // Define projects in a structured array
 const projects = [
+	{
+		title: 'Stock Portfolio AI',
+		description: 'An application that allows users to manage their stock portfolios and provides AI-generated insights and recommendations.',
+		technologies: ['Nextjs', 'TypeScript', 'Tailwind', 'Stripe', 'Supabase', 'Vercel'],
+		image: stockPortfolioAi,
+		link: 'https://portfolio-ai-ifxp.vercel.app/',
+		delay: 0,
+	},
 	{
 		title: 'New bluesoft web page',
 		description:
@@ -48,7 +58,7 @@ const projects = [
 ---
 
 <Layout title="Projects - Karol Rutkowski">
-	<section class="min-h-screen flex items-center justify-center py-20 px-4 bg-gray-900">
+	<section class="min-h-screen flex items-center justify-center py-20 px-4">
 		<div class="max-w-6xl mx-auto w-full">
 			<h1 class="text-4xl md:text-6xl font-bold mb-12 text-center text-white" data-aos="zoom-in-up">My Projects</h1>
 
@@ -60,8 +70,9 @@ const projects = [
 								<Image
 									src={project.image}
 									alt={`${project.title} screenshot`}
-									class="w-full h-48 object-cover rounded-t-lg mb-4"
+									class="w-full h-48 object-cover rounded-t-lg mb-4 cursor-pointer hover:opacity-90 transition-opacity"
 									loading="lazy"
+									data-modal-trigger
 								/>
 								<h2 class="text-2xl font-semibold text-sky-400 mb-2">{project.title}</h2>
 								<p class="text-gray-400 text-sm mb-4">{project.description}</p>
@@ -88,4 +99,5 @@ const projects = [
 			</div>
 		</div>
 	</section>
+	<ImageModal id="image-modal" server:defer />
 </Layout>

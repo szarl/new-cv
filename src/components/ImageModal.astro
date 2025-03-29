@@ -1,0 +1,53 @@
+---
+interface Props {
+	id: string;
+}
+
+const { id } = Astro.props;
+---
+
+<dialog id={id} class="modal bg-transparent w-full h-full p-4 max-w-none max-h-none m-0 group/modal backdrop:bg-transparent">
+	<div class="fixed inset-0 bg-black/75 opacity-0 transition-opacity duration-300 ease-out group-[&[open]]/modal:opacity-100"></div>
+	<div
+		class="relative w-full h-full flex items-center justify-center opacity-0 scale-95 -translate-y-4 transition-all duration-300 ease-out group-[&[open]]/modal:opacity-100 group-[&[open]]/modal:scale-100 group-[&[open]]/modal:translate-y-0"
+	>
+		<button
+			class="absolute top-0 right-0 text-white opacity-0 hover:text-gray-300 z-50 transition-colors duration-300 group-[&[open]]/modal:opacity-90 cursor-pointer"
+			onclick="document.getElementById('modal-image').closest('dialog').close()"
+		>
+			<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+				<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+			</svg>
+		</button>
+		<img id="modal-image" class="max-h-[90vh] max-w-[90vw] object-contain rounded-lg shadow-2xl z-10" src="" alt="Full size image" />
+	</div>
+</dialog>
+
+<script>
+	function setupModal(dialogId: string) {
+		const dialog = document.getElementById(dialogId) as HTMLDialogElement;
+		const modalImg = dialog.querySelector('#modal-image') as HTMLImageElement;
+
+		document.querySelectorAll('[data-modal-trigger]').forEach((trigger) => {
+			trigger.addEventListener('click', (e) => {
+				const img = e.currentTarget as HTMLImageElement;
+				modalImg.src = img.src;
+				modalImg.alt = img.alt;
+				dialog.showModal();
+			});
+		});
+
+		dialog.addEventListener('click', (e) => {
+			if (e.target === dialog) {
+				e.preventDefault();
+				dialog.close();
+			}
+		});
+
+		dialog.addEventListener('keydown', (e) => {
+			if (e.key === 'Escape') dialog.close();
+		});
+	}
+
+	setupModal('image-modal');
+</script>
