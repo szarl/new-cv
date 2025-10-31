@@ -8,9 +8,18 @@ import oldCv from '../assets/oldCv/cv.webp';
 import stockPortfolioAi from '../assets/stockPortfolioAi/portfolioAI.webp';
 import ImageModal from '../components/ImageModal.astro';
 import Layout from '../layouts/Layout.astro';
+import plantastic from '../assets/plantastic.webp';
 
 // Define projects in a structured array
 const projects = [
+	{
+		title: 'Plntastic - AI Plant Care Assistant',
+		description: 'A web application that uses AI to help users identify and care for their plants. Users can upload images of their plants and receive personalized care instructions.',
+		technologies: ['Nextjs', 'TypeScript', 'Tailwind', 'Stripe', 'Supabase', 'Vercel'],
+		image: plantastic,
+		link: 'https://hackathon-2025-self.vercel.app/',
+		delay: 0,
+	},
 	{
 		title: 'Stock Portfolio AI',
 		description: 'An application that allows users to manage their stock portfolios and provides AI-generated insights and recommendations.',
