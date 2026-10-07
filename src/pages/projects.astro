@@ -9,9 +9,19 @@ import stockPortfolioAi from '../assets/stockPortfolioAi/portfolioAI.webp';
 import ImageModal from '../components/ImageModal.astro';
 import Layout from '../layouts/Layout.astro';
 import plantastic from '../assets/plantastic.webp';
+import optisena from '../assets/optisena/optisena.webp';
 
 // Define projects in a structured array
 const projects = [
+	{
+		title: 'Optisena - B2B marketplace for short shelf-life food',
+		description:
+			'A B2B exchange that connects food suppliers with short shelf-life surplus to hotels, caterers and restaurants. Buyers get real-time alerts for batches matching their filters, and offers are sold first-come, first-served within hours.',
+		technologies: ['Nextjs', 'TypeScript', 'Tailwind', 'Supabase', 'Vercel'],
+		image: optisena,
+		link: 'https://optisena.com/',
+		delay: 0,
+	},
 	{
 		title: 'Plntastic - AI Plant Care Assistant',
 		description: 'A web application that uses AI to help users identify and care for their plants. Users can upload images of their plants and receive personalized care instructions.',
