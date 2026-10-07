@@ -1,4 +1,4 @@
-// Site-wide motion: scroll reveals, animated headings, interactive cards, scroll progress
+// Site-wide motion: scroll reveals, interactive cards, scroll progress
 // and the home page hero. Replaces AOS; pages keep their existing `data-aos` attributes and
 // global.css decides how each page animates them (keyed off `body[data-page]`).
 
@@ -7,10 +7,7 @@ const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matc
 
 function setupReveals() {
 	const targets = document.querySelectorAll<HTMLElement>('[data-aos]');
-	if (reducedMotion || !('IntersectionObserver' in window)) {
-		targets.forEach((el) => el.classList.add('is-visible'));
-		return;
-	}
+	if (reducedMotion || !('IntersectionObserver' in window)) return;
 
 	const observer = new IntersectionObserver(
 		(entries) => {
@@ -23,38 +20,12 @@ function setupReveals() {
 		{ threshold: 0.12, rootMargin: '0px 0px -40px 0px' },
 	);
 
+	// Content already on screen is shown straight away; only content further down animates
+	// in as it is scrolled to, with no delays.
 	targets.forEach((el) => {
-		const delay = Number(el.dataset.aosDelay ?? 0);
-		el.style.setProperty('--reveal-delay', `${Math.min(delay, 600)}ms`);
+		if (el.getBoundingClientRect().top < window.innerHeight) return;
+		el.classList.add('reveal');
 		observer.observe(el);
-	});
-}
-
-// Splits page headings into letters so they can cascade in.
-function setupHeadings() {
-	document.querySelectorAll<HTMLElement>('main h1').forEach((heading) => {
-		const text = heading.textContent?.trim();
-		if (!text || heading.children.length > 0) return;
-
-		heading.setAttribute('aria-label', text);
-		heading.classList.add('split-heading');
-		heading.textContent = '';
-
-		let index = 0;
-		text.split(' ').forEach((word, wordIndex, words) => {
-			const wordEl = document.createElement('span');
-			wordEl.className = 'split-word';
-			wordEl.setAttribute('aria-hidden', 'true');
-			for (const char of word) {
-				const charEl = document.createElement('span');
-				charEl.className = 'split-char';
-				charEl.textContent = char;
-				charEl.style.setProperty('--char-index', String(index++));
-				wordEl.appendChild(charEl);
-			}
-			heading.appendChild(wordEl);
-			if (wordIndex < words.length - 1) heading.appendChild(document.createTextNode(' '));
-		});
 	});
 }
 
@@ -105,22 +76,6 @@ function setupScrollProgress() {
 	update();
 }
 
-// Buttons that lean towards the cursor.
-function setupMagnetic() {
-	if (!finePointer || reducedMotion) return;
-	document.querySelectorAll<HTMLElement>('[data-magnetic]').forEach((el) => {
-		el.addEventListener('pointermove', (event) => {
-			const rect = el.getBoundingClientRect();
-			const x = event.clientX - rect.left - rect.width / 2;
-			const y = event.clientY - rect.top - rect.height / 2;
-			el.style.transform = `translate(${x * 0.25}px, ${y * 0.35}px)`;
-		});
-		el.addEventListener('pointerleave', () => {
-			el.style.transform = '';
-		});
-	});
-}
-
 // Rotating role line in the hero.
 function setupRoleRotator() {
 	const el = document.querySelector<HTMLElement>('[data-roles]');
@@ -149,7 +104,7 @@ function setupRoleRotator() {
 		}
 		setTimeout(tick, wait);
 	};
-	setTimeout(tick, 2600);
+	setTimeout(tick, 2200);
 }
 
 // Interactive constellation behind the hero: drifting nodes that link up near each other
@@ -248,10 +203,8 @@ function setupConstellation() {
 	loop();
 }
 
-setupHeadings();
 setupReveals();
 setupCards();
 setupScrollProgress();
-setupMagnetic();
 setupRoleRotator();
 setupConstellation();
