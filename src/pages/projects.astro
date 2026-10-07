@@ -10,6 +10,7 @@ import ImageModal from '../components/ImageModal.astro';
 import Layout from '../layouts/Layout.astro';
 import plantastic from '../assets/plantastic.webp';
 import optisena from '../assets/optisena/optisena.webp';
+import korkami from '../assets/korkami/korkami.webp';
 
 // Define projects in a structured array
 const projects = [
@@ -21,6 +22,15 @@ const projects = [
 		image: optisena,
 		link: 'https://optisena.com/',
 		delay: 0,
+	},
+	{
+		title: 'Korkami - Tutoring platform',
+		description:
+			'A platform connecting students with private tutors. Includes private lesson offers, learning materials, a blog and online payments, with an admin panel for managing content.',
+		technologies: ['React', 'TypeScript', 'MUI', 'Zustand', 'Django', 'PostgreSQL', 'MinIO', 'Docker', 'Nginx'],
+		image: korkami,
+		link: 'https://korkami.pl/',
+		delay: 100,
 	},
 	{
 		title: 'Plntastic - AI Plant Care Assistant',
