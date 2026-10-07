@@ -55,13 +55,15 @@ function setupCards() {
 	});
 }
 
+// Scroll progress bar, plus the header turning from transparent to frosted once the page moves.
 function setupScrollProgress() {
 	const bar = document.querySelector<HTMLElement>('.scroll-progress');
-	if (!bar) return;
+	const header = document.querySelector<HTMLElement>('.site-header');
 	let ticking = false;
 	const update = () => {
 		const max = document.documentElement.scrollHeight - window.innerHeight;
-		bar.style.transform = `scaleX(${max > 0 ? window.scrollY / max : 0})`;
+		if (bar) bar.style.transform = `scaleX(${max > 0 ? window.scrollY / max : 0})`;
+		header?.classList.toggle('is-scrolled', window.scrollY > 8);
 		ticking = false;
 	};
 	window.addEventListener(
