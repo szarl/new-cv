@@ -1,1 +1,399 @@
 @import "tailwindcss";
+
+/* ------------------------------------------------------------------
+   Page transitions (cross-document View Transitions, no JS needed)
+   ------------------------------------------------------------------ */
+@view-transition {
+	navigation: auto;
+}
+
+.site-header {
+	view-transition-name: site-header;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+	animation-duration: 0.2s;
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+/* Side-entering reveals start off screen; don't let them widen the page. */
+main {
+	overflow-x: clip;
+}
+
+/* ------------------------------------------------------------------
+   Ambient background + scroll progress
+   ------------------------------------------------------------------ */
+.aurora {
+	position: fixed;
+	inset: 0;
+	z-index: -1;
+	overflow: hidden;
+	pointer-events: none;
+}
+
+.aurora span {
+	position: absolute;
+	width: 45vmax;
+	height: 45vmax;
+	border-radius: 50%;
+	filter: blur(90px);
+	opacity: 0.22;
+	animation: drift 26s ease-in-out infinite alternate;
+}
+
+.aurora span:nth-child(1) {
+	background: #0ea5e9;
+	top: -15vmax;
+	left: -10vmax;
+}
+
+.aurora span:nth-child(2) {
+	background: #6366f1;
+	top: 30vh;
+	right: -15vmax;
+	animation-duration: 32s;
+	animation-delay: -8s;
+}
+
+.aurora span:nth-child(3) {
+	background: #14b8a6;
+	bottom: -20vmax;
+	left: 25vw;
+	opacity: 0.14;
+	animation-duration: 38s;
+	animation-delay: -16s;
+}
+
+@keyframes drift {
+	from {
+		transform: translate(0, 0) scale(1);
+	}
+	to {
+		transform: translate(8vw, 6vh) scale(1.15);
+	}
+}
+
+.scroll-progress {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 3px;
+	z-index: 50;
+	transform: scaleX(0);
+	transform-origin: left;
+	background: linear-gradient(90deg, #38bdf8, #818cf8, #2dd4bf);
+}
+
+/* ------------------------------------------------------------------
+   Navigation
+   ------------------------------------------------------------------ */
+.nav-link {
+	position: relative;
+}
+
+.nav-link::after {
+	content: '';
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: -6px;
+	height: 2px;
+	border-radius: 2px;
+	background: linear-gradient(90deg, #38bdf8, #818cf8);
+	transform: scaleX(0);
+	transform-origin: right;
+	transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.nav-link:hover::after,
+.nav-link[aria-current='page']::after {
+	transform: scaleX(1);
+	transform-origin: left;
+}
+
+[aria-current='page'] {
+	color: var(--color-sky-400);
+}
+
+/* ------------------------------------------------------------------
+   Headings: gradient text
+   ------------------------------------------------------------------ */
+main h1,
+main h2.text-4xl {
+	background: linear-gradient(100deg, #f8fafc 20%, #7dd3fc 60%, #a5b4fc 90%);
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent;
+}
+
+/* ------------------------------------------------------------------
+   Scroll reveals: one signature motion per page
+   ------------------------------------------------------------------ */
+.reveal {
+	--reveal-from: translateY(24px);
+	opacity: 0;
+	transform: var(--reveal-from);
+	transition:
+		opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+		transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal.is-visible {
+	opacity: 1;
+	transform: none;
+}
+
+.reveal[data-aos='fade-right'] {
+	--reveal-from: translateX(-60px);
+}
+
+.reveal[data-aos='fade-left'] {
+	--reveal-from: translateX(60px);
+}
+
+/* Projects: cards rise up out of the floor in 3D. */
+[data-page='projects'] main .grid {
+	perspective: 1200px;
+}
+
+[data-page='projects'] .reveal {
+	--reveal-from: translateY(80px) rotateX(28deg) scale(0.92);
+	transform-origin: center bottom;
+}
+
+/* Certificates: cards flip in like badges being turned over. */
+[data-page='certificates'] main .grid {
+	perspective: 1000px;
+}
+
+[data-page='certificates'] .reveal {
+	--reveal-from: rotateY(-75deg) translateX(-30px);
+	transform-origin: left center;
+}
+
+/* Skills: springy pop. */
+[data-page='skills'] .reveal {
+	--reveal-from: scale(0.85);
+	transition-timing-function: ease, cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+[data-page='skills'] [data-aos] li:hover svg {
+	animation: wiggle 0.5s ease;
+}
+
+@keyframes wiggle {
+	30% { transform: rotate(-12deg) scale(1.15); }
+	60% { transform: rotate(8deg) scale(1.15); }
+}
+
+/* Education: each entry is wiped in from the left. The clip sits on the inner card so the
+   observer still sees the wrapper. */
+[data-page='education'] .reveal {
+	--reveal-from: none;
+}
+
+[data-page='education'] .reveal > div {
+	clip-path: inset(0 100% 0 0 round 0.5rem);
+	transition:
+		clip-path 0.7s cubic-bezier(0.65, 0, 0.35, 1),
+		transform 0.2s ease-out,
+		box-shadow 0.4s ease,
+		border-color 0.4s ease !important;
+}
+
+[data-page='education'] .reveal.is-visible > div {
+	clip-path: inset(-30px -30px -30px -30px);
+}
+
+/* Experience: a timeline that draws itself, cards alternate from each side. */
+@media (min-width: 768px) {
+	[data-page='experience'] main .space-y-8 {
+		position: relative;
+		padding-left: 3rem;
+	}
+
+	[data-page='experience'] main .space-y-8::before {
+		content: '';
+		position: absolute;
+		left: 0.9rem;
+		top: 0;
+		bottom: 0;
+		width: 2px;
+		border-radius: 2px;
+		background: linear-gradient(to bottom, #38bdf8, #818cf8 60%, transparent);
+		transform-origin: top;
+	}
+
+	@supports (animation-timeline: view()) {
+		[data-page='experience'] main .space-y-8::before {
+			animation: draw-line linear both;
+			animation-timeline: view();
+			animation-range: entry 0% cover 60%;
+		}
+	}
+
+	[data-page='experience'] main .space-y-8 > [data-aos] {
+		position: relative;
+	}
+
+	[data-page='experience'] main .space-y-8 > [data-aos]::before {
+		content: '';
+		position: absolute;
+		left: calc(-3rem + 0.9rem - 6px);
+		top: 1.9rem;
+		width: 14px;
+		height: 14px;
+		border-radius: 50%;
+		background: #0c4a6e;
+		border: 2px solid #38bdf8;
+		box-shadow: 0 0 0 4px rgb(56 189 248 / 0.15);
+	}
+
+}
+
+[data-page='experience'] .space-y-8 > .reveal:nth-child(odd) {
+	--reveal-from: translateX(-70px);
+}
+
+[data-page='experience'] .space-y-8 > .reveal:nth-child(even) {
+	--reveal-from: translateX(70px);
+}
+
+@keyframes draw-line {
+	from {
+		transform: scaleY(0);
+	}
+}
+
+/* ------------------------------------------------------------------
+   Interactive cards: cursor spotlight, glowing edge, 3D tilt
+   ------------------------------------------------------------------ */
+.fx-card {
+	position: relative;
+	isolation: isolate;
+	transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+	transition:
+		transform 0.2s ease-out,
+		box-shadow 0.4s ease,
+		border-color 0.4s ease !important;
+	will-change: transform;
+}
+
+.fx-card:hover {
+	scale: 1.02 !important;
+	box-shadow:
+		0 20px 50px -12px rgb(14 165 233 / 0.35),
+		0 0 0 1px rgb(56 189 248 / 0.25);
+}
+
+.fx-card::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	z-index: -1;
+	border-radius: inherit;
+	pointer-events: none;
+	opacity: 0;
+	transition: opacity 0.4s ease;
+	background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), rgb(56 189 248 / 0.16), transparent 45%);
+}
+
+.fx-card:hover::before {
+	opacity: 1;
+}
+
+/* Certificates: a light sweep across the badge on hover. */
+[data-page='certificates'] .fx-card {
+	overflow: hidden;
+}
+
+[data-page='certificates'] .fx-card::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	pointer-events: none;
+	background: linear-gradient(115deg, transparent 35%, rgb(255 255 255 / 0.12) 50%, transparent 65%);
+	transform: translateX(-120%);
+}
+
+[data-page='certificates'] .fx-card:hover::after {
+	transform: translateX(120%);
+	transition: transform 0.9s ease;
+}
+
+/* ------------------------------------------------------------------
+   Home hero
+   ------------------------------------------------------------------ */
+.hero-canvas {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	-webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 75%);
+	mask-image: radial-gradient(ellipse at center, black 40%, transparent 75%);
+}
+
+.hero-name {
+	font-size: clamp(3rem, 10vw, 7.5rem);
+	line-height: 1;
+	letter-spacing: -0.03em;
+}
+
+.caret {
+	display: inline-block;
+	width: 2px;
+	height: 1.1em;
+	margin-left: 4px;
+	vertical-align: -0.15em;
+	background: #38bdf8;
+	animation: blink 1s steps(1) infinite;
+}
+
+@keyframes blink {
+	50% {
+		opacity: 0;
+	}
+}
+
+.scroll-cue {
+	animation: bob 2s ease-in-out infinite;
+}
+
+@keyframes bob {
+	50% {
+		transform: translateY(8px);
+	}
+}
+
+.profile-frame {
+	position: relative;
+	border-radius: 1rem;
+	padding: 3px;
+	background: linear-gradient(135deg, #38bdf8, #818cf8);
+}
+
+
+/* ------------------------------------------------------------------
+   Respect reduced-motion preferences
+   ------------------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+		transition-delay: 0ms !important;
+		scroll-behavior: auto !important;
+	}
+
+	@view-transition {
+		navigation: none;
+	}
+}
