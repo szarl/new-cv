@@ -9,13 +9,53 @@ import stockPortfolioAi from '../assets/stockPortfolioAi/portfolioAI.webp';
 import ImageModal from '../components/ImageModal.astro';
 import Layout from '../layouts/Layout.astro';
 import plantastic from '../assets/plantastic.webp';
+import optisena from '../assets/optisena/optisena.webp';
+import korkami from '../assets/korkami/korkami.webp';
+import hss from '../assets/hss/hss.webp';
+import cooperTest from '../assets/cooperTest/cooperTest.webp';
 
 // Define projects in a structured array
 const projects = [
 	{
-		title: 'Plntastic - AI Plant Care Assistant',
-		description: 'A web application that uses AI to help users identify and care for their plants. Users can upload images of their plants and receive personalized care instructions.',
-		technologies: ['Nextjs', 'TypeScript', 'Tailwind', 'Stripe', 'Supabase', 'Vercel'],
+		title: 'Optisena - B2B marketplace for short shelf-life food',
+		description:
+			'A B2B exchange that connects food suppliers with short shelf-life surplus to hotels, caterers and restaurants. Buyers get real-time alerts for batches matching their filters, and offers are sold first-come, first-served within hours. Built as a monorepo with a web app, a mobile app and a validation landing page.',
+		technologies: ['Nextjs', 'React Native', 'Expo', 'TypeScript', 'Tailwind', 'Supabase', 'Turborepo', 'Netlify'],
+		image: optisena,
+		link: 'https://optisena.com/',
+		delay: 0,
+	},
+	{
+		title: 'Korkami - Tutoring platform',
+		description:
+			'A platform connecting students with private tutors. Includes private lesson offers, learning materials, a blog and online payments, with an admin panel for managing content.',
+		technologies: ['React', 'TypeScript', 'MUI', 'Zustand', 'Django', 'PostgreSQL', 'MinIO', 'Docker', 'Nginx'],
+		image: korkami,
+		link: 'https://korkami.pl/',
+		delay: 100,
+	},
+	{
+		title: 'HSS - Railway traffic control desk',
+		description:
+			'Desktop control panel for a railway station interlocking system. Visualises track sections, switches, signals and routes in real time, sends commands to field controllers over Modbus (ADAM modules) and logs every command and event to a database.',
+		technologies: ['Java', 'JavaFX', 'Maven', 'Modbus', 'MySQL'],
+		image: hss,
+		link: null,
+		delay: 200,
+	},
+	{
+		title: 'Cooper Test - Garmin watch app',
+		description:
+			'A Connect IQ app for Garmin watches and bike computers that runs the 12-minute Cooper test. Records the activity with distance, max heart rate and calories, rates the result and keeps a history of past runs on the device.',
+		technologies: ['Monkey C', 'Garmin Connect IQ'],
+		image: cooperTest,
+		link: null,
+		delay: 300,
+	},
+	{
+		title: 'Plantastic - AI Plant Care Assistant',
+		description: 'A web application that uses AI and OCR to help users identify and care for their plants. Users can upload images of their plants and receive personalized care instructions.',
+		technologies: ['Nextjs', 'TypeScript', 'Tailwind', 'AI', 'OCR', 'Stripe', 'Supabase', 'Vercel'],
 		image: plantastic,
 		link: 'https://hackathon-2025-self.vercel.app/',
 		delay: 0,
