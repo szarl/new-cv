@@ -11,6 +11,8 @@ import Layout from '../layouts/Layout.astro';
 import plantastic from '../assets/plantastic.webp';
 import optisena from '../assets/optisena/optisena.webp';
 import korkami from '../assets/korkami/korkami.webp';
+import hss from '../assets/hss/hss.webp';
+import cooperTest from '../assets/cooperTest/cooperTest.webp';
 
 // Define projects in a structured array
 const projects = [
@@ -31,6 +33,24 @@ const projects = [
 		image: korkami,
 		link: 'https://korkami.pl/',
 		delay: 100,
+	},
+	{
+		title: 'HSS - Railway traffic control desk',
+		description:
+			'Desktop control panel for a railway station interlocking system. Visualises track sections, switches, signals and routes in real time, sends commands to field controllers over Modbus (ADAM modules) and logs every command and event to a database.',
+		technologies: ['Java', 'JavaFX', 'Maven', 'Modbus', 'MySQL'],
+		image: hss,
+		link: null,
+		delay: 200,
+	},
+	{
+		title: 'Cooper Test - Garmin watch app',
+		description:
+			'A Connect IQ app for Garmin watches and bike computers that runs the 12-minute Cooper test. Records the activity with distance, max heart rate and calories, rates the result and keeps a history of past runs on the device.',
+		technologies: ['Monkey C', 'Garmin Connect IQ'],
+		image: cooperTest,
+		link: null,
+		delay: 300,
 	},
 	{
 		title: 'Plantastic - AI Plant Care Assistant',
