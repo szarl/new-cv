@@ -4,6 +4,7 @@ import vercelAdapter from '@astrojs/vercel';
 import tailwindcss from '@tailwindcss/vite';
 import icon from 'astro-icon';
 import { defineConfig } from 'astro/config';
+import agentMarkdown from './integrations/agent-markdown.mjs';
 
 export default defineConfig({
   site: 'https://karol-rutkowski.com',
@@ -19,6 +20,7 @@ export default defineConfig({
         return item;
       },
     }),
+    agentMarkdown(),
   ],
   adapter: vercelAdapter(),
   output: 'server',

@@ -3,6 +3,7 @@ import '../styles/global.css'; // Import global styles (Tailwind)
 import { getImage } from 'astro:assets';
 import Footer from '../components/Footer.astro';
 import ProfilePhoto from '../assets/developer_me.webp';
+import { CONTACT, PROFILES } from '../lib/agent-content';
 
 interface Props {
 	title?: string;
@@ -24,10 +25,32 @@ const canonicalUrl = new URL(canonicalPath, siteUrl).href;
 const ogImage = await getImage({ src: ProfilePhoto, width: 1200, height: 1200, format: 'jpg' });
 const ogImageUrl = new URL(ogImage.src, siteUrl).href;
 
-const sameAs = ['https://www.linkedin.com/in/karol-rutkowski-06100320a/', 'https://github.com/szarl'];
+const sameAs = [PROFILES.linkedin, PROFILES.github];
+const address = { '@type': 'PostalAddress', addressLocality: CONTACT.locality, addressCountry: CONTACT.country };
+const contactPoint = {
+	'@type': 'ContactPoint',
+	contactType: 'professional inquiries',
+	email: CONTACT.email,
+	telephone: CONTACT.telephone,
+	url: `${siteUrl.origin}/contact`,
+};
 const structuredData = {
 	'@context': 'https://schema.org',
 	'@graph': [
+		{
+			'@type': 'Organization',
+			'@id': `${siteUrl.origin}/#organization`,
+			name: 'Karol Rutkowski',
+			url: `${siteUrl.origin}/`,
+			logo: ogImageUrl,
+			description: 'AI engineering and software development by Karol Rutkowski, AI Engineer and Software Engineer from Wrocław, Poland.',
+			founder: { '@id': `${siteUrl.origin}/#person` },
+			email: CONTACT.email,
+			telephone: CONTACT.telephone,
+			contactPoint,
+			address,
+			sameAs,
+		},
 		{
 			'@type': 'Person',
 			'@id': `${siteUrl.origin}/#person`,
@@ -37,7 +60,10 @@ const structuredData = {
 			jobTitle: 'AI Engineer',
 			description,
 			worksFor: { '@type': 'Organization', name: 'MasterBorn' },
-			address: { '@type': 'PostalAddress', addressLocality: 'Wrocław', addressCountry: 'PL' },
+			email: CONTACT.email,
+			telephone: CONTACT.telephone,
+			address,
+			contactPoint,
 			knowsAbout: [
 				'Artificial Intelligence',
 				'Large Language Models',
@@ -91,6 +117,7 @@ const isActive = (href: string) => (href === '/' ? section === 'home' : `/${sect
 		<meta name="theme-color" content="#082f49" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="sitemap" href="/sitemap-index.xml" />
+		{canonicalPath === '/' && !noindex && <link rel="alternate" type="text/markdown" href="/index.md" />}
 
 		<meta property="og:type" content="website" />
 		<meta property="og:site_name" content="Karol Rutkowski" />
