@@ -1,4 +1,5 @@
 ---
+export const prerender = true;
 import { Icon } from 'astro-icon/components';
 import Layout from '../../layouts/Layout.astro';
 
@@ -15,7 +16,10 @@ const post = {
 };
 ---
 
-<Layout title={`${post.title} - Karol Rutkowski`}>
+<Layout
+	title={`${post.title} - Karol Rutkowski`}
+	description="Karol Rutkowski on his journey as a software engineer: IKEA e-commerce, the Bowwe web creator, Vue.js, Node.js, Docker and building this site with Astro."
+>
 	<section class="min-h-screen flex justify-center py-20 px-4">
 		<div class="max-w-3xl mx-auto w-full">
 			<a href="/blog" class="flex items-center text-sky-400 hover:text-sky-300 transition-colors duration-300 mb-8">

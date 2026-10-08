@@ -6,11 +6,20 @@ import icon from 'astro-icon';
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  site: import.meta.env.SITE_URL || 'https://www.rutkowski-software.com',
+  site: 'https://karol-rutkowski.com',
   vite: {
     plugins: [tailwindcss()],
   },
-  integrations: [icon(), sitemap()],
+  integrations: [
+    icon(),
+    sitemap({
+      // Match the canonical URLs (no trailing slash) emitted by Layout.astro.
+      serialize(item) {
+        item.url = item.url.replace(/(?<=[^/])\/$/, '').replace(/^(https:\/\/[^/]+)$/, '$1/');
+        return item;
+      },
+    }),
+  ],
   adapter: vercelAdapter(),
   output: 'server',
 });

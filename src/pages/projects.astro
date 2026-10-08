@@ -1,4 +1,5 @@
 ---
+export const prerender = true;
 import { Icon } from 'astro-icon/components';
 import { Image } from 'astro:assets';
 import asm from '../assets/asm/flat-details.webp';
@@ -106,7 +107,10 @@ const projects = [
 ];
 ---
 
-<Layout title="Projects - Karol Rutkowski">
+<Layout
+	title="Projects - Karol Rutkowski, AI Engineer"
+	description="Portfolio of projects by Karol Rutkowski: AI and LLM-powered apps, OCR, full-stack web platforms and mobile apps built with TypeScript, Node.js and Python."
+>
 	<section class="min-h-screen flex items-center justify-center py-20 px-4">
 		<div class="max-w-6xl mx-auto w-full">
 			<h1 class="text-4xl md:text-6xl font-bold mb-12 text-center text-white" data-aos="zoom-in-up">My Projects</h1>

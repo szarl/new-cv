@@ -1,4 +1,5 @@
 ---
+export const prerender = true;
 import { Icon } from 'astro-icon/components';
 import Layout from '../layouts/Layout.astro';
 
@@ -135,7 +136,10 @@ const skills = [
 ];
 ---
 
-<Layout title="Skills - Karol Rutkowski">
+<Layout
+	title="Skills - Karol Rutkowski, AI Engineer"
+	description="Technical skills of Karol Rutkowski: AI & machine learning, LLMs, TypeScript, Node.js, NestJS, Python, React, Vue, AWS, Docker and databases."
+>
 	<section class="min-h-screen flex items-center justify-center py-20 px-4">
 		<div class="max-w-6xl mx-auto w-full">
 			<h1 class="text-4xl md:text-6xl font-bold mb-12 text-center text-white" data-aos="zoom-in-up">My Skills</h1>
